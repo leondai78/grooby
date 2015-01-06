@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby 
 ## Grooby
 
 require "nokogiri"
@@ -8,11 +9,11 @@ require "graph"
 class Graph
   class Node
     def children
-
+      self.edges.keys
     end
 
     def parents
-
+      all_nodes = super.edges
     end
   end
 end
