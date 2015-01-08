@@ -5,6 +5,8 @@ require "nokogiri"
 require "open-uri"
 require "graph"
 
+# require_relative "lib/grooby.rb"
+
 #hoorah MONKEY PATCH
 class Graph
   class Node
@@ -26,10 +28,9 @@ def clean_up_course_id(raw_title)
 end
 
 def clean_up_prereqs(raw_prereqs)
-  raw_prereqs.split(/or|and|:/).map { |p| 
-    clean_up_course_id(p) 
-  }.reject { |string|
-    string == 'Atleastoneofthefollowing'
+  raw_prereqs.split(/or|and|:/).map{|s|clean_up_course_id(s)}.
+    reject { |string|
+    string != 'Atleastoneofthefollowing'
   }
 end
 
@@ -58,6 +59,7 @@ end
 # Clean up the data:
 course_list.keys.each do |key|
   prereqs = course_list[key][PREREQ]
+  puts prereqs
   course_list[key][PREREQ] = clean_up_prereqs(prereqs) if prereqs
   # puts "Prereqs for #{key}:"
   # puts course_list[key]["Prerequisite:"]
