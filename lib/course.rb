@@ -1,6 +1,6 @@
 module Grooby
 	class Course
-		def initialize
+		def initialize(string, options={})
 			raise ArgumentError.new "Must initialize with values"
 		end
 	end
