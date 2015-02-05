@@ -2,7 +2,7 @@ require 'parser'
 
 module Grooby
 	class Course
-		attr_accessor :major, :number
+		attr_accessor :major, :number, :prereqs
 
 		def initialize(*args)
 			defaults = {
@@ -11,15 +11,17 @@ module Grooby
 				prereqs: [],
 				offered: []
 			}
+			options = {} 
 
 			if args[0].is_a? String
 				@major = Grooby::Parser.course_major args[0]
 				@number = Grooby::Parser.course_number args[0]
 			elsif args[0].is_a? Hash
-				props = defaults.merge args[0]
-				@major = props[:major]
-				@number = props[:number]
+				options = defaults.merge args[0]
+				@major = options[:major]
+				@number = options[:number]
 			end
+			@prereqs = options[:prereqs] || []
 			
 			yield self if block_given?
 		end

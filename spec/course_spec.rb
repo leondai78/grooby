@@ -31,6 +31,13 @@ RSpec.describe Grooby::Course do
 	end
 
 	describe "#prereqs" do
+		before(:each) do
+			@course = Grooby::Course.new
+		end
+
+		it "should be empty array if uninitialized" do
+			expect(@course.prereqs).to eq []
+		end
 	end
 end
 			
