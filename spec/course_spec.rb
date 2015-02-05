@@ -39,5 +39,23 @@ RSpec.describe Grooby::Course do
 			expect(@course.prereqs).to eq []
 		end
 	end
+
+	describe "#add_prereq" do
+		before(:each) do
+			@course = Grooby::Course.new
+		end
+
+		it "should error when non-course added" do
+			expect {
+				@course.add_prereq "i am not a course"
+			}.to raise_error ArgumentError
+		end
+
+		it "should add new course when course added" do
+			expect(@course.prereqs.size).to eq 0
+			@course.add_prereq Grooby::Course.new("CSCI 3030")
+			expect(@course.prereqs.size).to eq 1
+		end
+	end
 end
 			

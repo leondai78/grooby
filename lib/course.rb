@@ -3,6 +3,7 @@ require 'parser'
 module Grooby
 	class Course
 		attr_accessor :major, :number, :prereqs
+		attr_reader	:prereqs
 
 		def initialize(*args)
 			defaults = {
@@ -24,6 +25,14 @@ module Grooby
 			@prereqs = options[:prereqs] || []
 			
 			yield self if block_given?
+		end
+
+		def add_prereq course
+			if course.is_a? Grooby::Course
+				@prereqs << course
+			else
+				raise ArgumentError.new "Prereqs must be courses."
+			end
 		end
 	end
 end
