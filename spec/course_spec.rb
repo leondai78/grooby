@@ -4,16 +4,22 @@ RSpec.describe Grooby::Course do
 	describe "#initialize" do
 		it "can initialize with course string" do
 			expect { course = Grooby::Course.new "CSCI 3030" }.to_not raise_error
+			expect(course.major).to be "CSCI"
+			expect(course.number).to be "3030"
 		end
 
 		it "can initialize with options hash only" do
 			expect { course = Grooby::Course.new major: "CSCI", number: "3030" }.to_not raise_error
+			expect(course.major).to be "CSCI"
+			expect(course.number).to be "3030"
 		end
 
 		it "can initialize with string and options hash" do
 			expect { 
 				course = Grooby::Course.new "CSCI 3030", prereqs: [], offered: []
 			}.to_not raise_error
+			expect(course.major).to be "CSCI"
+			expect(course.number).to be "3030"
 		end
 
 		it "can initialize with block" do
