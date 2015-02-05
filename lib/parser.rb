@@ -1,10 +1,10 @@
 module Grooby
 	class Parser
-		def self.parse_course_major string
+		def self.course_major string
 			string.split(' ').first
 		end
 
-		def self.parse_course_number string
+		def self.course_number string
 			string.split(' ').last
 		end
 	end

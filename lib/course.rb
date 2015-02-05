@@ -13,8 +13,8 @@ module Grooby
 			}
 
 			if args[0].is_a? String
-				@major = Grooby::Parser.parse_course_major args[0]
-				@number = Grooby::Parser.parse_course_number args[0]
+				@major = Grooby::Parser.course_major args[0]
+				@number = Grooby::Parser.course_number args[0]
 			elsif args[0].is_a? Hash
 				props = defaults.merge args[0]
 				@major = props[:major]
