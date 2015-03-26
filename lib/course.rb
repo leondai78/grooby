@@ -1,7 +1,7 @@
 module Grooby
-	class Course
-		def initialize
-			@major
+  class Course
+    def initialize
+      @major
 			@number
 			@offered = []
 			@prereqs = []
